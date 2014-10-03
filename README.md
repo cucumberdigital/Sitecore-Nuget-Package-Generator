@@ -1,6 +1,10 @@
 # Sitecore NuGet Packages Generator #
 
-One of the most commonly questions that Sitecore developers raise is about distributing Sitecore assemblies via NuGet packages for more transparent and easy package management. This project is devoted to resolve this problem by generating your own NuGet packages to publish them on your internal NuGet server. Please note that **SDN license does not allow you to publish those NuGet packages to any public server** such as [www.nuget.org](//www.nuget.org) and you can only use them within the internal network of your company.
+One of the most commonly questions that Sitecore developers raise is about distributing Sitecore assemblies via NuGet packages for more transparent and easy package management. This project is devoted to resolve this problem by generating your own NuGet packages to publish them on your internal NuGet server. 
+
+### WARNING ###
+
+SDN license does not allow you to publish those NuGet packages to any public server such as [www.nuget.org](//www.nuget.org) and you can only use them within the internal network of your company.
 
 ### How is it expected to work? ###
 
