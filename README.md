@@ -1,6 +1,6 @@
 # Sitecore NuGet Packages Generator #
 
-One of the most commonly questions that Sitecore developers raise is about distributing Sitecore assemblies via NuGet packages for more transparent and easy package management. This project is devoted to resolve this problem by generating your own NuGet packages to publish them on your internal NuGet server. 
+One of the most commonly asked questions that Sitecore developers raise is about distributing Sitecore assemblies via NuGet packages for more transparent and easy package management. This project is devoted to resolve this problem by generating your own NuGet packages to publish them on your internal NuGet server. 
 
 ### WARNING ###
 
