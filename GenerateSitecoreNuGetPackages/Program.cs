@@ -198,8 +198,8 @@
 
     private static string GetDescription(PackageDefinition definition, IEnumerable<string> files)
     {
-      var separator = Environment.NewLine + "* ";
-      var description = definition.Description + "Package includes: " + Environment.NewLine + separator + string.Join(separator, files);
+      var separator = ", " + Environment.NewLine;
+      var description = definition.Description + "Package includes: " + Environment.NewLine + string.Join(separator, files);
       return description;
     }
 
