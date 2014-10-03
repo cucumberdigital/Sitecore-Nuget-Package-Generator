@@ -116,7 +116,7 @@
             CreateSpecificationFile(nuspecPath, id, v, version, title, description, dependencies, files);
 
             // Create nupkg file
-            var nupkgFilePath = Path.Combine(baseFolderPath, fullName + ".nuspec");
+            var nupkgFilePath = Path.Combine(outputFolderPath, fullName + ".nupkg");
             CreatePackage(nuspecPath, nupkgFilePath);
 
             // Publish nupkg file
