@@ -233,12 +233,35 @@
 
       Console.WriteLine("Pushing to the server");
 
-      var arguments = string.Format("push \"{0}\" -Source {1} -apikey {2}", nupkgPath, pushData.Server, pushData.Credentials);
+      var source = GetSource(pushData);
+      var credentials = pushData.Credentials;
+      var arguments = string.Format("push \"{0}\" -Source {1} -apikey {2}", nupkgPath, source, credentials);
       var processStartInfo = CreateNuGetProcessStartInfo(arguments);
       var process = System.Diagnostics.Process.Start(processStartInfo);
 
       // wait for end
       process.WaitForExit();
+    }
+
+    private static string GetSource(NuGetServerInfo pushData)
+    {
+      const string Protocol = "://";
+
+      // add a default http protocol if omitted
+      var server = pushData.Server;
+      if (!server.Contains(Protocol))
+      {
+        server = "http" + Protocol + server;
+      }
+
+      // add a default /nuget/Default feed if omitted
+      var position = server.IndexOf(Protocol) + Protocol.Length;
+      if (server.TrimEnd('/').IndexOf("/", position) < 0)
+      {
+        server = server + "/nuget/Default";
+      }
+
+      return server;
     }
 
     private static ProcessStartInfo CreateNuGetProcessStartInfo(string arguments)
