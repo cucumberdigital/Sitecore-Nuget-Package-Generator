@@ -57,7 +57,7 @@
         }
         catch (Exception ex)
         {
-          Console.WriteLine("Error processing file " + file + ". " + ex.Message);
+          Console.WriteLine("Error processing file " + file + ". " + ex.Message + Environment.NewLine + "Stack trace:" + Environment.NewLine + ex.StackTrace);
         }
       }
     }
