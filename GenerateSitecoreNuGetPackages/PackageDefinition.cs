@@ -16,7 +16,8 @@
         Description = "All Sitecore Assemblies that are necessary for Sitecore development. ",
         Array = new[]
         {
-          "*.dll"
+          "bin/*.dll",
+          "bin_Net4/*.dll",
         }
       },
       new PackageDefinition
@@ -27,13 +28,14 @@
         Description = "Main Sitecore Assemblies that are required for Sitecore development. ",
         Array = new[]
         {
-          "Lucene.Net.dll",
-          "Sitecore.Kernel.dll",
-          "Sitecore.Mvc.dll",
-          "Sitecore.ItemWebApi.dll",
-          "Sitecore.Logging.dll",
-          "Sitecore.Update.dll",
-          "Sitecore.Zip.dll"
+          "bin/Lucene.Net.dll",
+          "bin/Sitecore.Kernel.dll",
+          "bin/Sitecore.Mvc.dll",
+          "bin/Sitecore.ItemWebApi.dll",
+          "bin/Sitecore.Logging.dll",
+          "bin/Sitecore.Update.dll",
+          "bin/Sitecore.Zip.dll",
+          "bin_Net4/*.dll"
         }
       },
       new PackageDefinition
@@ -42,15 +44,15 @@
         Id = "SitecoreClient",
         Title = "Sitecore Client Assemblies",
         Description = "Main Sitecore Assemblies that are required for Sitecore development. ",
-        Dependencies = new []
+        Dependencies = new[]
         {
           "SitecoreKernel"
         },
         Array = new[]
         {
-          "Sitecore.*Client*.dll",
-          "Sitecore.*Shell*.dll",
-          "Sitecore.Apps.Loader.dll"
+          "bin/Sitecore.*Client*.dll",
+          "bin/Sitecore.*Shell*.dll",
+          "bin/Sitecore.Apps.Loader.dll"
         }
       },
       new PackageDefinition
@@ -65,10 +67,10 @@
         },
         Array = new[]
         {
-          "Sitecore.*Analytics*.dll", 
-          "Sitecore.Automation*.dll", 
-          "Sitecore.SegmentBuilder.dll",
-          "*Mongo*"
+          "bin/Sitecore.*Analytics*.dll", 
+          "bin/Sitecore.Automation*.dll", 
+          "bin/Sitecore.SegmentBuilder.dll",
+          "bin/*Mongo*"
         }
       },
       new PackageDefinition
@@ -83,7 +85,7 @@
         },
         Array = new[]
         {
-          "Sitecore.*Buckets*.dll"
+          "bin/Sitecore.*Buckets*.dll"
         }
       },
       new PackageDefinition
@@ -98,7 +100,7 @@
         },
         Array = new[]
         {
-          "Sitecore.*ContentSearch*.dll"
+          "bin/Sitecore.*ContentSearch*.dll"
         }
       }
     };

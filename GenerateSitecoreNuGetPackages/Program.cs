@@ -160,7 +160,7 @@
       foreach (var pattern in definition.Array)
       {
         // copy the assemblies
-        var path = "*/Website/bin/" + pattern;
+        var path = "*/Website/" + pattern;
         using (var zip = new ZipFile(file))
         {
           foreach (var entry in zip.SelectEntries(path))
