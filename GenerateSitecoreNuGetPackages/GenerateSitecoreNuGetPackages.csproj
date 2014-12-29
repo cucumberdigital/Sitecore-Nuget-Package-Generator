@@ -39,6 +39,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="install.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="NuGetServerInfo.cs" />
     <Compile Include="PackageDefinition.cs" />
     <Compile Include="Program.cs" />

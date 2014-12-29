@@ -111,6 +111,9 @@
               continue;
             }
 
+            // Copy install.ps1 to set Copy Local = False
+            CopyInstallScriptFile(baseFolderPath);
+
             // Create nuspec file
             var description = GetDescription(definition, files);
             CreateSpecificationFile(nuspecPath, id, v, version, title, description, dependencies, files);
@@ -124,6 +127,14 @@
           }
         }
       }
+    }
+
+    private static void CopyInstallScriptFile(string baseFolderPath)
+    {
+      var installTargetFilePath = Path.Combine(baseFolderPath, "tools", "install.ps1");
+      var installSourceFilePath = Path.Combine(Environment.CurrentDirectory, "install.ps1");
+      EnsureFolder(Path.GetDirectoryName(installTargetFilePath));
+      File.Copy(installSourceFilePath, installTargetFilePath, true);
     }
 
     private static void CreateSpecificationFile(string nuspecPath, string id, VersionInfo versionInfo, string version, string title, string description, IEnumerable<string> dependencies, IEnumerable<string> files)
@@ -147,7 +158,8 @@
         </dependencies>
     </metadata>
     <files>
-        {5}
+      {5}
+      <file src=""tools\install.ps1"" target=""tools\install.ps1"" />
     </files>
 </package>", id, version, title, description, dependenciesString, filesString);
 
