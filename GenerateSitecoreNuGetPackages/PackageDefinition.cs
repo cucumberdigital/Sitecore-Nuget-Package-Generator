@@ -14,7 +14,7 @@
         Id = "Sitecore",
         Title = "Sitecore Assemblies",
         Description = "All Sitecore Assemblies that are necessary for Sitecore development. ",
-        Array = new[]
+        Assemblies = new[]
         {
           "bin/*.dll",
           "bin_Net4/*.dll",
@@ -26,7 +26,7 @@
         Id = "SitecoreKernel",
         Title = "Sitecore Kernel Assemblies",
         Description = "Main Sitecore Assemblies that are required for Sitecore development. ",
-        Array = new[]
+        Assemblies = new[]
         {
           "bin/Lucene.Net.dll",
           "bin/Sitecore.Kernel.dll",
@@ -48,7 +48,7 @@
         {
           "SitecoreKernel"
         },
-        Array = new[]
+        Assemblies = new[]
         {
           "bin/Sitecore.*Client*.dll",
           "bin/Sitecore.*Shell*.dll",
@@ -65,7 +65,7 @@
         {
           "SitecoreKernel"
         },
-        Array = new[]
+        Assemblies = new[]
         {
           "bin/Sitecore.*Analytics*.dll", 
           "bin/Sitecore.Automation*.dll", 
@@ -83,7 +83,7 @@
         {
           "SitecoreKernel"
         },
-        Array = new[]
+        Assemblies = new[]
         {
           "bin/Sitecore.*Buckets*.dll"
         }
@@ -98,7 +98,7 @@
         {
           "SitecoreKernel"
         },
-        Array = new[]
+        Assemblies = new[]
         {
           "bin/Sitecore.*ContentSearch*.dll"
         }
@@ -116,7 +116,7 @@
 
     public string Description { get; set; }
 
-    public string[] Array { get; set; }
+    public string[] Assemblies { get; set; }
 
     public string[] Dependencies { get; set; }
 

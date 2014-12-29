@@ -157,7 +157,7 @@
     private static IEnumerable<string> PrepareFiles(string file, string baseFolderPath, PackageDefinition definition)
     {
       var files = new List<string>();
-      foreach (var pattern in definition.Array)
+      foreach (var pattern in definition.Assemblies)
       {
         // copy the assemblies
         var path = "*/Website/" + pattern;
