@@ -151,6 +151,7 @@
         <title>{2}</title>
         <authors>Alen Pelin</authors>
         <owners>Sitecore</owners>
+        <iconUrl>http://www.sitecore.net/favicon.ico</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>{3}</description>
         <dependencies>
