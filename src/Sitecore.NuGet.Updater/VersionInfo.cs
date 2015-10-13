@@ -1,10 +1,22 @@
-namespace GenerateSitecoreNuGetPackages
+namespace Sitecore.NuGet.Updater
 {
   using System;
   using System.Text.RegularExpressions;
 
   public class VersionInfo
   {
+    private VersionInfo()
+    {
+    }
+
+    public int Major { get; set; }
+
+    public int Minor { get; set; }
+
+    public int Build { get; set; }
+
+    public string Revision { get; set; }
+
     public static VersionInfo Parse(Match match)
     {
       var major = int.Parse(match.Groups[1].Value);
@@ -45,13 +57,5 @@ namespace GenerateSitecoreNuGetPackages
     {
       return string.Format("{0}.{1}.{2}.{3}", this.Major, this.Minor, this.Build, this.Revision);
     }
-
-    public int Major { get; set; }
-
-    public int Minor { get; set; }
-
-    public int Build { get; set; }
-
-    public string Revision { get; set; }
   }
 }

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Sitecore.NuGet.Core</id>
+        <version>1.0.0</version>
+        <authors>Alen Pelin</authors>
+        <owners>Sitecore</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>NuGet generation for Sitecore</description>
+        <dependencies>
+            <dependency id="DotNetZip.Reduced" />
+            <dependency id="NuGet.Core" />
+            <dependency id="Sitecore.Diagnostics.Base" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\Sitecore.NuGet.Core.dll" target="lib\Sitecore.NuGet.Core.dll" />
+    </files>
+</package>

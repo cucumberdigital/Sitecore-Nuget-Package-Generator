@@ -1,5 +1,6 @@
+src/Sitecore.NuGet.Updater/bin/
+src/Sitecore.NuGet.Updater/obj/
+src/Sitecore.NuGet.Core/obj/
+src/Sitecore.NuGet.Core/bin/
+src/packages/
 *.suo
-packages/
-GenerateSitecoreNuGetPackages/obj/
-GenerateSitecoreNuGetPackages/bin/
-*.user

@@ -1,10 +1,18 @@
-namespace GenerateSitecoreNuGetPackages
+namespace Sitecore.NuGet.Updater
 {
   using System;
 
-  public class NuGetServerInfo
+  public class ServerInfo
   {
-    public static NuGetServerInfo Parse(string text)
+    #region Properties
+
+    public string Server { get; set; }
+
+    public string Credentials { get; set; }
+
+    #endregion
+
+    public static ServerInfo Parse(string text)
     {
       if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(text.Trim()))
       {
@@ -14,7 +22,7 @@ namespace GenerateSitecoreNuGetPackages
       try
       {
         var at = text.IndexOf('@');
-        return new NuGetServerInfo
+        return new ServerInfo
         {
           Server = text.Substring(at + 1),
           Credentials = text.Substring(0, at)
@@ -25,13 +33,5 @@ namespace GenerateSitecoreNuGetPackages
         throw new FormatException("The format is 'user:pass@server'", ex);
       }
     }
-
-    #region Properties
-
-    public string Server { get; set; }
-
-    public string Credentials { get; set; }
-
-    #endregion
   }
 }
