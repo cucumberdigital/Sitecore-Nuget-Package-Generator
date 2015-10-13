@@ -57,6 +57,21 @@
       },
       new PackageDefinition
       { 
+        Tag = "SitecoreExperienceEditor",
+        Id = "SitecoreExperienceEditor",
+        Title = "Sitecore Experience Editor Assemblies",
+        Description = "Main Sitecore Assemblies that are required for Sitecore development within the Experience Editor. ",
+        Dependencies = new[]
+        {
+          "SitecoreClient"
+        },
+        Assemblies = new[]
+        {
+          "bin/Sitecore.*ExperienceEditor*.dll"
+        }
+      },
+      new PackageDefinition
+      { 
         Tag = "SitecoreAnalytcs",
         Id = "SitecoreAnalytics",
         Title = "Sitecore Analytics Assemblies",
