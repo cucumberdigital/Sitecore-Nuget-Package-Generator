@@ -86,7 +86,13 @@ foreach ($reference in $project.Object.References)
         yield return this.Generate(file.FullName, outputFolderPath, releaseVersion, releaseTitle);
       }
 
-      var nugetFilePath = Path.Combine(outputFolderPath, "SC." + releaseVersion + ".nupkg");
+      var releaseFolderPath = Path.Combine(outputFolderPath, releaseVersion);
+      if (!Directory.Exists(releaseFolderPath))
+      {
+        Directory.CreateDirectory(releaseFolderPath);
+      }
+
+      var nugetFilePath = Path.Combine(releaseFolderPath, "SC." + releaseVersion + ".nupkg");
       var dependencies = files.Select(x => new ManifestDependency { Id = this.GetNuGetName(x.FullName), Version = releaseVersion });
       var metadata = new ManifestMetadata
       {
