@@ -5,8 +5,8 @@
   using System.IO;
   using System.Linq;
   using Ionic.Zip;
-  using Sitecore.Diagnostics;
-  using Sitecore.Diagnostics.Annotations;
+  using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Base.Annotations;
   using ManifestDependency = global::NuGet.ManifestDependency;
   using ManifestDependencySet = global::NuGet.ManifestDependencySet;
   using ManifestMetadata = global::NuGet.ManifestMetadata;
