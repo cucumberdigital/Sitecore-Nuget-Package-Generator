@@ -77,7 +77,7 @@ foreach ($reference in $project.Object.References)
       var binFolder = new DirectoryInfo(binFolderPath);
       Assert.IsTrue(binFolder.Exists, "The folder does not exist: {0}", binFolder.FullName);
 
-      var files = binFolder.GetFiles("*.dll", SearchOption.AllDirectories);
+      var files = binFolder.GetFiles("Sitecore.*.dll", SearchOption.AllDirectories);
       var ver = FileVersionInfo.GetVersionInfo(Path.Combine(binFolderPath, "Sitecore.Kernel.dll"));
       var releaseVersion = this.GetReleaseVersion(ver);
 
@@ -86,11 +86,11 @@ foreach ($reference in $project.Object.References)
         yield return this.Generate(file.FullName, outputFolderPath, releaseVersion, releaseTitle);
       }
 
-      var nugetFilePath = Path.Combine(outputFolderPath, "SC." + releaseVersion + ".nupkg");
+      var nugetFilePath = Path.Combine(outputFolderPath, "Sitecore." + releaseVersion + ".nupkg");
       var dependencies = files.Select(x => new ManifestDependency { Id = this.GetNuGetName(x.FullName), Version = releaseVersion });
       var metadata = new ManifestMetadata
       {
-        Id = "SC",
+        Id = "Sitecore",
         Version = releaseVersion,
         Authors = "Sitecore",
         Description = "All assemblies of Sitecore " + releaseTitle,
@@ -219,7 +219,7 @@ foreach ($reference in $project.Object.References)
     {
       Assert.ArgumentNotNull(assemblyFilePath, "assemblyFilePath");
 
-      return "SC." + Path.GetFileNameWithoutExtension(assemblyFilePath);
+      return Path.GetFileNameWithoutExtension(assemblyFilePath);
     }
 
     [NotNull]
