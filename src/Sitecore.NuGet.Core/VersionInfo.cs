@@ -1,11 +1,11 @@
-namespace Sitecore.NuGet.Updater
+namespace Sitecore.NuGet.Core
 {
   using System;
   using System.Text.RegularExpressions;
 
   public class VersionInfo
   {
-    private VersionInfo()
+    public VersionInfo()
     {
     }
 
