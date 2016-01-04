@@ -12,6 +12,7 @@
   using ManifestMetadata = global::NuGet.ManifestMetadata;
   using PackageBuilder = global::NuGet.PackageBuilder;
   using PhysicalPackageFile = global::NuGet.PhysicalPackageFile;
+    using System;
 
   public class PackageGenerator
   {
@@ -81,9 +82,26 @@ foreach ($reference in $project.Object.References)
       var ver = FileVersionInfo.GetVersionInfo(Path.Combine(binFolderPath, "Sitecore.Kernel.dll"));
       var releaseVersion = this.GetReleaseVersion(ver);
 
+      var singleDLLPackages = new List<string>();
       foreach (var file in files)
       {
-        yield return this.Generate(file.FullName, outputFolderPath, releaseVersion, releaseTitle);
+          singleDLLPackages.Add(this.GenerateSingleDLLPackage(file.FullName, outputFolderPath, releaseVersion, releaseTitle));
+      }
+
+      var customDefinitionPackages = new List<string>();
+      var customPackageGenerator = new CustomPackageGenerator();
+      foreach (PackageDefinition definition in PackageDefinition.PackageDefinitions)
+      {
+          var customPackageCreated = customPackageGenerator.GenerateSingleCustomPackage(definition, 
+                                                                                        binFolderPath, 
+                                                                                        outputFolderPath, 
+                                                                                        releaseVersion, 
+                                                                                        singleDLLPackages,
+                                                                                        customDefinitionPackages);
+          if (!String.IsNullOrEmpty(customPackageCreated))
+          {
+              customDefinitionPackages.Add(customPackageCreated);
+          }
       }
 
       var nugetFilePath = Path.Combine(outputFolderPath, "Sitecore." + releaseVersion + ".nupkg");
@@ -111,11 +129,13 @@ foreach ($reference in $project.Object.References)
         builder.Save(stream);
       }
 
-      yield return nugetFilePath;
+      singleDLLPackages.AddRange(customDefinitionPackages);
+
+      return singleDLLPackages;
     }
 
     [NotNull]
-    public virtual string Generate([NotNull] string assemblyFilePath, [NotNull] string outputFolderPath, [NotNull] string releaseVersion, [NotNull] string releaseTitle)
+    public virtual string GenerateSingleDLLPackage([NotNull] string assemblyFilePath, [NotNull] string outputFolderPath, [NotNull] string releaseVersion, [NotNull] string releaseTitle)
     {
       Assert.ArgumentNotNull(assemblyFilePath, "assemblyFilePath");
       Assert.ArgumentNotNull(outputFolderPath, "outputFolderPath");
