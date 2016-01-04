@@ -13,146 +13,129 @@ namespace Sitecore.NuGet.Core
         {
           new PackageDefinition
           { 
-            Tag = "Sitecore.Core",
-            Id = "Sitecore.Core",
-            Title = "Sitecore Kernel Assembly",
-            Description = "Main Sitecore Assembly that are required for Sitecore development. ",
+            Tag = "Sitecore.CoreGroup",
+            Id = "Sitecore.CoreGroup",
+            Title = "Sitecore Core Assemblies",
+            Description = "Main Sitecore Assemblies that are required for Sitecore development. ",
             Dependencies = new[]
             {
-              "Newtonsoft.Json"
+              "Newtonsoft.Json",
+              "Sitecore.Kernel"
             },
-            Assemblies = new[]
+            Assemblies = new string[]
             {
-              "bin/Sitecore.Kernel.dll"
             }
           },
           new PackageDefinition
           { 
-            Tag = "Sitecore.Client",
-            Id = "Sitecore.Client",
+            Tag = "Sitecore.Client.CoreGroup",
+            Id = "Sitecore.Client.CoreGroup",
             Title = "Sitecore Client Assemblies",
             Description = "Main Sitecore Assemblies that are required for Sitecore development within the Sitecore Client. ",
             Dependencies = new[]
             {
-              "Sitecore.Core"
+              "Sitecore.CoreGroup",
+              "Sitecore.Client"
             },
-            Assemblies = new[]
+            Assemblies = new string[]
             {
-              "bin/Sitecore.Client.dll"
             }
           },
           new PackageDefinition
           { 
-            Tag = "Sitecore.Mvc",
-            Id = "Sitecore.Mvc",
-            Title = "Sitecore Mvc Assembly",
-            Description = "Main Sitecore Assembly that are necessary for Sitecore development with usage of Sitecore MVC. ",
+            Tag = "Sitecore.Mvc.CoreGroup",
+            Id = "Sitecore.Mvc.CoreGroup",
+            Title = "Sitecore Mvc Core Assemblies",
+            Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore MVC. ",
             Dependencies = new []
             {
-              "Sitecore.Core",
+              "Sitecore.CoreGroup",
+              "Sitecore.Mvc",
               "Microsoft.AspNet.Mvc"
             },
-            Assemblies = new[]
+            Assemblies = new string[]
             {
-              "bin/Sitecore.Mvc.dll"
             }
           },
           new PackageDefinition
           { 
-            Tag = "Sitecore.ExperienceEditor",
-            Id = "Sitecore.ExperienceEditor",
-            Title = "Sitecore Experience Editor Assemblies",
+            Tag = "Sitecore.ExperienceEditor.CoreGroup",
+            Id = "Sitecore.ExperienceEditor.CoreGroup",
+            Title = "Sitecore Experience Editor Core Assemblies",
             Description = "Main Sitecore Assemblies that are required for Sitecore development within the Experience Editor. ",
             Dependencies = new[]
             {
-              "Sitecore.Client"
+              "Sitecore.Client.CoreGroup",
+              "Sitecore.ExperienceEditor",
+              "Sitecore.ExperienceEditor.Speak"
             },
-            Assemblies = new[]
+            Assemblies = new string[]
             {
-              "bin/Sitecore.ExperienceEditor.dll",
-              "bin/Sitecore.ExperienceEditor.Speak.dll"
             }
           },
           new PackageDefinition
           { 
-            Tag = "Sitecore.Analytcs",
-            Id = "Sitecore.Analytics",
+            Tag = "Sitecore.Analytcs.CoreGroup",
+            Id = "Sitecore.Analytics.CoreGroup",
             Title = "Sitecore Analytics Assemblies",
             Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore Analytics API. ",
             Dependencies = new []
             {
-              "Sitecore.Core"
+              "Sitecore.CoreGroup",
+              "Sitecore.Analytics", 
+              "Sitecore.Analytics.Automation", 
+              "Sitecore.Analytics.Core", 
+              "Sitecore.Analytics.Model"
             },
-            Assemblies = new[]
+            Assemblies = new string[]
             {
-              "bin/Sitecore.Analytics.dll", 
-              "bin/Sitecore.Analytics.Automation.dll", 
-              "bin/Sitecore.Analytics.Core.dll", 
-              "bin/Sitecore.Analytics.Model.dll", 
-              "bin/Sitecore.Mvc.Analytics.dll"
             }
           },
-          //new PackageDefinition
-          //{ 
-          //  Tag = "Sitecore.Mvc.Analytics",
-          //  Id = "Sitecore.Mvc.Analytics",
-          //  Title = "Sitecore Mvc Analytics Assemblies",
-          //  Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore MVC and Analytics. ",
-          //  Dependencies = new []
-          //  {
-          //    "Sitecore.Analytics",
-          //    "Sitecore.Mvc"
-          //  },
-          //  Assemblies = new[]
-          //  {
-          //    "bin/Sitecore.Mvc.Analytics.dll"
-          //  }
-          //},
           new PackageDefinition
           { 
-            Tag = "Sitecore.Buckets",
-            Id = "Sitecore.Buckets",
+            Tag = "Sitecore.Mvc.Analytics.CoreGroup",
+            Id = "Sitecore.Mvc.Analytics.CoreGroup",
+            Title = "Sitecore Mvc Analytics Assemblies",
+            Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore MVC and Analytics. ",
+            Dependencies = new []
+            {
+              "Sitecore.Analytics.CoreGroup",
+              "Sitecore.Mvc.CoreGroup",
+              "Sitecore.Mvc.Analytics"
+            },
+            Assemblies = new string[]
+            {
+            }
+          },
+          new PackageDefinition
+          { 
+            Tag = "Sitecore.Buckets.CoreGroup",
+            Id = "Sitecore.Buckets.CoreGroup",
             Title = "Sitecore Buckets Assemblies",
             Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore Buckets API. ",
             Dependencies = new []
             {
-              "Sitecore.Core"
+              "Sitecore.CoreGroup",
+              "Sitecore.Buckets"
             },
-            Assemblies = new[]
+            Assemblies = new string[]
             {
-              "bin/Sitecore.Buckets.dll"
             }
           },
           new PackageDefinition
           { 
-            Tag = "Sitecore.ContentSearch",
-            Id = "Sitecore.ContentSearch",
+            Tag = "Sitecore.ContentSearch.CoreGroup",
+            Id = "Sitecore.ContentSearch.CoreGroup",
             Title = "Sitecore ContentSearch Assemblies",
             Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore ContentSearch API. ",
             Dependencies = new []
             {
-              "Sitecore.Core"
+              "Sitecore.CoreGroup",
+              "Sitecore.ContentSearch",
+              "Sitecore.ContentSearch.Linq"
             },
-            Assemblies = new[]
+            Assemblies = new string[]
             {
-              "bin/Sitecore.ContentSearch.dll",
-              "bin/Sitecore.ContentSearch.Linq.dll"
-            }
-          },
-          new PackageDefinition
-          { 
-            Tag = "Sitecore.ContentSearch.Analytics",
-            Id = "Sitecore.ContentSearch.Analytics",
-            Title = "Sitecore ContentSearch Assemblies",
-            Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore ContentSearch API. ",
-            Dependencies = new []
-            {
-              "Sitecore.Analytics",
-              "Sitecore.ContentSearch"
-            },
-            Assemblies = new[]
-            {
-              "bin/Sitecore.ContentSearch.Analytics.dll"
             }
           }
         };
