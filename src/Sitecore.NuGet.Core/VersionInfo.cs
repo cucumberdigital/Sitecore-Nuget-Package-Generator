@@ -9,6 +9,14 @@ namespace Sitecore.NuGet.Core
     {
     }
 
+    public VersionInfo(int major, int minor, int build, int revision)
+    {
+        Major = major;
+        Minor = minor;
+        Build = build;
+        Revision = revision.ToString();
+    }
+
     public int Major { get; set; }
 
     public int Minor { get; set; }
