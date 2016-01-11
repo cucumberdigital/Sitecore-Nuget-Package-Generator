@@ -5,8 +5,8 @@
   using System.IO;
   using System.Linq;
   using Ionic.Zip;
-  using Sitecore.Diagnostics;
-  using Sitecore.Diagnostics.Annotations;
+  using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Base.Annotations;
   using ManifestDependency = global::NuGet.ManifestDependency;
   using ManifestDependencySet = global::NuGet.ManifestDependencySet;
   using ManifestMetadata = global::NuGet.ManifestMetadata;
@@ -104,7 +104,13 @@ foreach ($reference in $project.Object.References)
           }
       }
 
-      var nugetFilePath = Path.Combine(outputFolderPath, "Sitecore." + releaseVersion + ".nupkg");
+      var releaseFolderPath = Path.Combine(outputFolderPath, releaseVersion);
+      if (!Directory.Exists(releaseFolderPath))
+      {
+        Directory.CreateDirectory(releaseFolderPath);
+      }
+
+      var nugetFilePath = Path.Combine(releaseFolderPath, "Sitecore." + releaseVersion + ".nupkg");
       var dependencies = files.Select(x => new ManifestDependency { Id = this.GetNuGetName(x.FullName), Version = releaseVersion });
       var metadata = new ManifestMetadata
       {

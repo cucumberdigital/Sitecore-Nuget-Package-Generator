@@ -13,7 +13,7 @@
 
     private static int Main(string[] args)
     {
-      if (args.Length != 2 && args.Length != 3)
+      if (args == null || (args.Length != 2 && args.Length != 3))
       {
         Console.WriteLine("The application expects two or three arguments:");
         Console.WriteLine("1. The path to the specific zip distributive or to the folder with them");
