@@ -137,6 +137,42 @@ namespace Sitecore.NuGet.Core
             Assemblies = new string[]
             {
             }
+          },
+          new PackageDefinition
+          { 
+            Tag = "Sitecore.Speak.CoreGroup",
+            Id = "Sitecore.Speak.CoreGroup",
+            Title = "Sitecore Speak Assemblies",
+            Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore Speak. ",
+            Dependencies = new []
+            {
+              "Sitecore.CoreGroup",
+              "Sitecore.Mvc.CoreGroup",
+              "Sitecore.Speak.Mvc",
+              "Sitecore.Speak.Client",
+              "Sitecore.Speak.Components"
+            },
+            Assemblies = new string[]
+            {
+            }
+          },
+          new PackageDefinition
+          { 
+            Tag = "Sitecore.Services.Client.CoreGroup",
+            Id = "Sitecore.Services.Client.CoreGroup",
+            Title = "Sitecore Services Client Assemblies",
+            Description = "Main Sitecore Assemblies that are necessary for Sitecore development with usage of Sitecore Services Client. ",
+            Dependencies = new []
+            {
+              "Sitecore.CoreGroup",
+              "Sitecore.Services.Client",
+              "Sitecore.Services.Core",
+              "Sitecore.Services.Infrastructure",
+              "Sitecore.Services.Infrastructure.Sitecore"
+            },
+            Assemblies = new string[]
+            {
+            }
           }
         };
         #endregion
