@@ -140,6 +140,23 @@ namespace Sitecore.NuGet.Core
           },
           new PackageDefinition
           { 
+            Tag = "Sitecore.Packaging.CoreGroup",
+            Id = "Sitecore.Packaging.CoreGroup",
+            Title = "Sitecore Packaging Assemblies",
+            Description = "Main Sitecore Assemblies that are necessary for Sitecore creation of update packages. ",
+            Dependencies = new []
+            {
+              "Sitecore.CoreGroup",
+              "Sitecore.Logging",
+              "Sitecore.Update",
+              "Sitecore.Zip"
+            },
+            Assemblies = new string[]
+            {
+            }
+          },
+          new PackageDefinition
+          { 
             Tag = "Sitecore.Speak.CoreGroup",
             Id = "Sitecore.Speak.CoreGroup",
             Title = "Sitecore Speak Assemblies",
