@@ -1,11 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.NuGet.Core", "Sitecore.NuGet.Core\Sitecore.NuGet.Core.csproj", "{3186CA83-DEC1-4E5C-B642-7A34E79E7317}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.NuGet.Updater", "Sitecore.NuGet.Updater\Sitecore.NuGet.Updater.csproj", "{A14AD4B1-FCC2-4241-AE7B-C523CF06F8BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DDFDC7AA-E94D-4497-AD64-5FA9EA74ACE4}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{A5105487-6CF5-4509-9D01-8B9528711293}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshots", "screenshots", "{7B9FAFBA-8ECE-4210-A400-71AC9D5EBEC9}"
+	ProjectSection(SolutionItems) = preProject
+		..\assets\screenshots\dotPeek-Assembly-References.jpg = ..\assets\screenshots\dotPeek-Assembly-References.jpg
+		..\assets\screenshots\Generated-Packages-w-Dependencies.jpg = ..\assets\screenshots\Generated-Packages-w-Dependencies.jpg
+		..\assets\screenshots\MyGet-Package-Contents-Analytics.jpg = ..\assets\screenshots\MyGet-Package-Contents-Analytics.jpg
+		..\assets\screenshots\MyGet-Package-Contents-Kernel.jpg = ..\assets\screenshots\MyGet-Package-Contents-Kernel.jpg
+		..\assets\screenshots\MyGet-Package-Versions.jpg = ..\assets\screenshots\MyGet-Package-Versions.jpg
+		..\assets\screenshots\MyGet-Package.jpg = ..\assets\screenshots\MyGet-Package.jpg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +41,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A5105487-6CF5-4509-9D01-8B9528711293} = {DDFDC7AA-E94D-4497-AD64-5FA9EA74ACE4}
+		{7B9FAFBA-8ECE-4210-A400-71AC9D5EBEC9} = {A5105487-6CF5-4509-9D01-8B9528711293}
 	EndGlobalSection
 EndGlobal
