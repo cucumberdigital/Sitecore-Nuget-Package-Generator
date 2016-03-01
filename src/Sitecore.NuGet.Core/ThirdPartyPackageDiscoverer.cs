@@ -19,27 +19,20 @@ namespace Sitecore.NuGet.Core
         /// <param name="packageName"></param>
         /// <param name="binFolderPath"></param>
         /// <returns></returns>
-        public ManifestDependency FindPublicThirdPartyNugetPackage(string packageName, string binFolderPath)
+        public ManifestDependency FindPublicThirdPartyNugetPackage(AssemblyName assembly)
         {
             // convert package name to DLL name
-            string dllName = this.ResolveKnownDLLNameForPackage(packageName);
+            string packageName = ResolveKnownPackageNameForDLL(assembly.Name);
 
-            string fullDLLPath = Path.Combine(binFolderPath, dllName + ".DLL");
-            // find name of DLL in binDirectory
-            if (!File.Exists(fullDLLPath))
-            {
-                Console.WriteLine("--- Assembly for Nuget Package Not Found: " + packageName);
-                return null;
-            }
+            if (packageName == null) return null;
 
-            // find the version of that DLL
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(fullDLLPath);
-            string version = fvi.FileVersion;
-            VersionInfo ver = new VersionInfo(fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
+            VersionInfo ver = new VersionInfo(assembly.Version.Major, assembly.Version.Minor, assembly.Version.Build, assembly.Version.Revision);
 
             // find equivalent on public Nuget Repo
-            return this.SearchForPackage(packageName, ver);
+            return SearchForPackage(packageName, ver);
         }
+
+
 
         /// <summary>
         /// Converts the name of a Nuget Package to the DLL name that we want to check in the bin directory.
@@ -47,9 +40,10 @@ namespace Sitecore.NuGet.Core
         /// </summary>
         /// <param name="nugetPackageName"></param>
         /// <returns></returns>
-        private string ResolveKnownDLLNameForPackage(string nugetPackageName)
+        private string ResolveKnownPackageNameForDLL(string nugetPackageName)
         {
             string dllToCheck = nugetPackageName;
+            
             if (nugetPackageName.Equals("Antlr"))
             {
                 dllToCheck = "Antlr3.Runtime";
@@ -77,6 +71,10 @@ namespace Sitecore.NuGet.Core
             else if (nugetPackageName.Equals("YUICompressor.NET"))
             {
                 dllToCheck = "Yahoo.Yui.Compressor";
+            }
+            else if (nugetPackageName.Equals("System.Web.Mvc"))
+            {
+                dllToCheck = nugetPackageName.Replace("System.Web.", "Microsoft.AspNet.");
             }
 
             return dllToCheck;
@@ -122,7 +120,7 @@ namespace Sitecore.NuGet.Core
         /// <returns></returns>
         private IPackage FindMatchingPackageVersion(IEnumerable<IPackage> packages, VersionInfo dllVersion)
         {
-            IPackage matchingPackage = packages.Where(package => package.Version.Version.Equals(dllVersion)).FirstOrDefault();
+            IPackage matchingPackage = packages.FirstOrDefault(package => package.Version.Version.Equals(dllVersion));
             if (matchingPackage == null)
             {
                 // Major, Minor, Build

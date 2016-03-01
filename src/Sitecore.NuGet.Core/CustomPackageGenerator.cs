@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Ionic.Zip;
 
 namespace Sitecore.NuGet.Core
 {
@@ -52,7 +53,8 @@ namespace Sitecore.NuGet.Core
                   {
                         Dependencies =  dependencies.ToList()
                   }
-                }
+                },
+                //ContentFiles = PrepareFiles()
             };
 
             var builder = new PackageBuilder();
@@ -64,6 +66,49 @@ namespace Sitecore.NuGet.Core
 
             return nugetFilePath;
         }
+
+        private static IEnumerable<string> PrepareFiles(string file, string baseFolderPath, PackageDefinition definition)
+    {
+      var files = new List<string>();
+      foreach (var pattern in definition.Assemblies)
+      {
+        // copy the assemblies
+        var path = "*/Website/" + pattern;
+        using (var zip = new ZipFile(file))
+        {
+          foreach (var entry in zip.SelectEntries(path))
+          {
+            string fileName = Path.GetFileName(entry.FileName);
+            if (files.Contains(fileName))
+//Add a comment to this line
+            {
+              Console.WriteLine("Skipped (dll): " + fileName);
+              continue;
+            }
+
+            using (var input = entry.OpenReader())
+            {
+              var outputFilePath = Path.Combine(baseFolderPath, "lib", fileName);
+              EnsureFolder(Path.GetDirectoryName(outputFilePath));
+              using (Stream output = File.OpenWrite(outputFilePath))
+              {
+                CopyStream(input, output);
+              }
+            }
+
+            files.Add(fileName);
+          }
+        }
+      }
+
+      if (files.Count == 0)
+      {
+        Console.WriteLine("No files that match pattern. Skipping");
+        return null;
+      }
+
+      return files;
+    }
 
         private IEnumerable<ManifestDependency> GenerateDependencies(IEnumerable<string> specifiedDependencies, 
                                                                      string binFolderPath,
@@ -86,20 +131,39 @@ namespace Sitecore.NuGet.Core
                         confirmedDependencies.Add(new ManifestDependency() { Id = dependencyPackage, Version = sitecoreReleaseVersion });
                     }
                 }
-                else
-                {
-                    // check Public Nuget Repo for packages
-                    ManifestDependency publicNugetPackage = packageDiscoverer.FindPublicThirdPartyNugetPackage(dependencyPackage, binFolderPath);
+                //else
+                //{
+                //    // check Public Nuget Repo for packages
+                //    ManifestDependency publicNugetPackage = packageDiscoverer.FindPublicThirdPartyNugetPackage(dependencyPackage, binFolderPath);
 
-                    if (publicNugetPackage != null)
-                    {
-                        confirmedDependencies.Add(publicNugetPackage);
-                    }
-                }
+                //    if (publicNugetPackage != null)
+                //    {
+                //        confirmedDependencies.Add(publicNugetPackage);
+                //    }
+                //}
             }
 
             return confirmedDependencies;
         }
 
+        private static void EnsureFolder(string libFolderPath)
+        {
+            if (!Directory.Exists(libFolderPath))
+            {
+                Directory.CreateDirectory(libFolderPath);
+            }
+        }
+
+        private static void CopyStream(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[8 * 1024];
+            int len;
+            while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                output.Write(buffer, 0, len);
+            }
+        }
     }
+
+  
 }
