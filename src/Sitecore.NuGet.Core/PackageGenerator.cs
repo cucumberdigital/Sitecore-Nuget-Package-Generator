@@ -242,16 +242,18 @@ foreach ($reference in $project.Object.References)
                 if (confirmedDependencies.Select(x => x.Id).Contains(dependency.Name))
                     continue;
 
-                // check if the dependency starts with 'Sitecore', does it exist in the singleDLLpackages 
-                // i.e is it a Sitecore package and does it exist in this Sitecore version?
+                
                 if (dependency.Name.StartsWith("Sitecore"))
                 {
                     confirmedDependencies.Add(new ManifestDependency() { Id = dependency.Name, Version = _sitecoreReleaseVersion});
                 }
                 else
                 {
-                    ManifestDependency publicNugetPackage;
+                    // check Public Nuget Repo for packages
 
+                    //TODO Further work on Third Party dependencies, fallbacks to Sitecore released third party libraries
+                    ManifestDependency publicNugetPackage;
+                    
                     var files = _binFolder.GetFiles(dependency.Name + ".dll", SearchOption.AllDirectories);
                     if (!files.Any())
                     {
@@ -262,9 +264,6 @@ foreach ($reference in $project.Object.References)
                         publicNugetPackage = packageDiscoverer.FindPublicThirdPartyNugetPackage(Assembly.LoadFrom(files.FirstOrDefault().FullName).GetName());
                     }
                     
-
-                    // check Public Nuget Repo for packages
-                     
                     if (publicNugetPackage != null)
                     {
                         confirmedDependencies.Add(publicNugetPackage);

@@ -42,37 +42,40 @@ namespace Sitecore.NuGet.Core
         /// <returns></returns>
         private string ResolveKnownPackageNameForDLL(string nugetPackageName)
         {
+            //TODO Refactor to swap assembly name to Nuget repo name
+
             string dllToCheck = nugetPackageName;
             
-            if (nugetPackageName.Equals("Antlr"))
-            {
-                dllToCheck = "Antlr3.Runtime";
-            }
-            else if (nugetPackageName.Equals("izenda.ComponentArt.Web.UI"))
-            {
-                dllToCheck = "ComponentArt.Web.UI";
-            }
-            else if (nugetPackageName.Equals("Lucene.Net.Contrib"))
-            {
-                dllToCheck = "Lucene.Net.Contrib.Core";
-            }
-            else if (nugetPackageName.Equals("mongocsharpdriver"))
-            {
-                dllToCheck = "MongoDB.Driver";
-            }
-            else if (nugetPackageName.Equals("Microsoft.AspNet.WebApi"))
-            {
-                dllToCheck = "System.Web.Http";
-            }
-            else if (nugetPackageName.StartsWith("Microsoft.AspNet."))
-            {
-                dllToCheck = nugetPackageName.Replace("Microsoft.AspNet.", "System.Web.");
-            }
-            else if (nugetPackageName.Equals("YUICompressor.NET"))
-            {
-                dllToCheck = "Yahoo.Yui.Compressor";
-            }
-            else if (nugetPackageName.Equals("System.Web.Mvc"))
+            //if (nugetPackageName.Equals("Antlr"))
+            //{
+            //    dllToCheck = "Antlr3.Runtime";
+            //}
+            //else if (nugetPackageName.Equals("izenda.ComponentArt.Web.UI"))
+            //{
+            //    dllToCheck = "ComponentArt.Web.UI";
+            //}
+            //else if (nugetPackageName.Equals("Lucene.Net.Contrib"))
+            //{
+            //    dllToCheck = "Lucene.Net.Contrib.Core";
+            //}
+            //else if (nugetPackageName.Equals("mongocsharpdriver"))
+            //{
+            //    dllToCheck = "MongoDB.Driver";
+            //}
+            //else if (nugetPackageName.Equals("Microsoft.AspNet.WebApi"))
+            //{
+            //    dllToCheck = "System.Web.Http";
+            //}
+            //else if (nugetPackageName.StartsWith("Microsoft.AspNet."))
+            //{
+            //    dllToCheck = nugetPackageName.Replace("Microsoft.AspNet.", "System.Web.");
+            //}
+            //else if (nugetPackageName.Equals("YUICompressor.NET"))
+            //{
+            //    dllToCheck = "Yahoo.Yui.Compressor";
+            //}
+            //else 
+            if (nugetPackageName.Equals("System.Web.Mvc"))
             {
                 dllToCheck = nugetPackageName.Replace("System.Web.", "Microsoft.AspNet.");
             }

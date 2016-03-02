@@ -50,8 +50,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomPackageGenerator.cs" />
-    <Compile Include="PackageDefinition.cs" />
     <Compile Include="PackageGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThirdPartyPackageDiscoverer.cs" />
